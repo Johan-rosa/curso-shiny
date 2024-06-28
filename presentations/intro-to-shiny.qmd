@@ -1,0 +1,52 @@
+---
+title: "R/Shiny: una introducción"
+author: "Johan Rosa"
+format: revealjs
+---
+
+
+
+## Qué y para qué Shiny?
+
+Shiny es un paquete de R para crear aplicaciones Web. 
+
+### Sirver para varias cosas:
+
+1. Empacar lógica de R de forma tal que persona sin conocimiento del programa la aprovechen
+2. Hacer análisis exploratorio de forma interactiva
+3. Punto de partida para aprender formalmente software development
+4. Hacer dinero
+
+## Cómo hacer dinero con Shiny
+
+1. Buscar un trabajo como desarrollador R/Shiny
+2. Dar a conocer tus habilidades haciendo networking. Que tus compañeros sepan que sabes programar, ellos te van a referir
+3. Identificando problemas, haciendo un demo funcional y mostrándolo
+
+## Mis recomendaciones
+
+## Lo Básico de Shiny
+
+```{r}
+#| eval: false
+#| echo: true
+
+library(shiny)
+
+ui <- fluidPage(
+)
+
+server <- function(input, output, session) {
+}
+
+shinyApp(ui, server)
+```
+
+
+## Code
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
