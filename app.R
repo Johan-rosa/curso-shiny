@@ -1,47 +1,37 @@
-
 library(shiny)
+library(tidyverse)
+
+set.seed(123)
+
+stock <- tibble(
+  company = rep(c("Google", "Tesla", "nVidia", "Coca Cola"), each = 100),
+  day = rep(1:100, times = 4)
+) %>%
+  group_by(company) %>%
+  mutate(
+    price = day + cumsum(rnorm(n = 100, mean = 0, sd = 5))
+  )
 
 ui <- fluidPage(
-  h1("Registro al curso de programación con Shiny"),
-  h2("Sección 1 - 23 y 28 de junio 2024s"),
-  textInput(inputId = "nombre", label = "Nombre", value = "Johan"),
-  textInput(inputId = "apellido", label = "Apellido"),
   selectInput(
-    inputId = "sexo",
-    label = "Sexo label",
-    choices = c("Masculino", "Femenino")
+    inputId = "company",
+    label = "Compañía",
+    choices = unique(stock$company),
+    selected = "Google",
+    multiple = TRUE
   ),
-  dateInput(
-    inputId = "fecha_nacimiento",
-    label = "Fecha de nacimiento",
-    value = "1992-01-01"
-  ),
-  numericInput(
-    inputId = "semestre",
-    label = "Semestre",
-    min = 4,
-    max = 8,
-    value = 5
-  ),
-  textOutput("resultado")
+  plotOutput("plot")
 )
 
 server <- function(input, output, session) {
-  output$resultado <- renderText({
-    uppercase_name <- toupper(input$nombre)
-    uppercase_lastname <- toupper(input$apellido)
 
-    edad <- as.numeric((Sys.Date() - input$fecha_nacimiento) / 365) |>
-      round()
-
-    paste(
-      "Hola",
-      uppercase_name,
-      uppercase_lastname, "\n", edad, "años",
-      "Sexo:", input$sexo
-      )
+  output$plot <- renderPlot({
+    stock %>%
+      filter(company %in% input$company) %>%
+      ggplot(aes(x = day, y = price, color = company)) +
+      geom_line() +
+      labs(title = input$company)
   })
 }
 
 shinyApp(ui, server)
-

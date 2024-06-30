@@ -1,0 +1,13 @@
+name: shiny-course
+title: shiny-course
+username: formula
+account: formula
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12254871
+bundleId: 8806519
+url: https://formula.shinyapps.io/shiny-course/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: app1.R|apps/forecasting.R|desity_plot.R|functions/get_icdv.R|mapas.R|data|presentations
