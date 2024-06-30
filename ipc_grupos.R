@@ -9,8 +9,8 @@ download.file(
   mode = "wb"
 )
 
-read_excel(
+contenido <- read_excel(
   path = file_path,
-  skip = 7
-) |>
-  view()
+  skip = 7,
+  col_names = FALSE
+)
