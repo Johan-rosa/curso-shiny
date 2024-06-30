@@ -9,12 +9,6 @@ download.file(
   mode = "wb"
 )
 
-contenido <- read_excel(
-  path = file_path,
-  skip = 7,
-  col_names = FALSE
-)
-
 grupos <- c(
   "ayb",
   "bebidas_alcoholicas",
@@ -34,3 +28,10 @@ names <- c(
   "mes",
   paste0(rep(grupos, each = 2), c("", "_vm"))
 )
+
+read_excel(
+  path = file_path,
+  skip = 7,
+  col_names = FALSE
+) |>
+  setNames(names)
