@@ -14,3 +14,23 @@ contenido <- read_excel(
   skip = 7,
   col_names = FALSE
 )
+
+grupos <- c(
+  "ayb",
+  "bebidas_alcoholicas",
+  "prendas_de_vestir",
+  "vivienda",
+  "muebles",
+  "salud",
+  "transporte",
+  "comunicaciones",
+  "recreacion_cultura",
+  "educacion",
+  "restaurantes_hoteles",
+  "bienes_diversos"
+)
+
+names <- c(
+  "mes",
+  paste0(rep(grupos, each = 2), c("", "_vm"))
+)
